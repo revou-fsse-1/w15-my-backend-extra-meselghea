@@ -17,6 +17,9 @@ const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const jwt_auth_guard_1 = require("./auth/jwt-auth.guard");
 let AppController = class AppController {
+    getHello() {
+        throw new Error('Method not implemented.');
+    }
     constructor(appService) {
         this.appService = appService;
     }
