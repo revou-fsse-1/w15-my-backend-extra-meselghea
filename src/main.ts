@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(
     session({
-    secret: process.env.SECRET_KEY,
+    secret: 'keyboard',
     resave: false,
     saveUninitialized: false,
     }),
