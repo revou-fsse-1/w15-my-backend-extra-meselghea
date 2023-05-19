@@ -87,6 +87,7 @@ __decorate([
 ], SellersController.prototype, "remove", null);
 SellersController = __decorate([
     (0, common_1.Controller)('sellers'),
+    (0, swagger_1.ApiTags)('sellers'),
     __metadata("design:paramtypes", [sellers_service_1.SellersService])
 ], SellersController);
 exports.SellersController = SellersController;

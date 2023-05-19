@@ -22,7 +22,6 @@ async function bootstrap() {
         .setDescription('The Median API description')
         .setVersion('0.1')
         .addBearerAuth()
-        .addSecurityRequirements('bearer')
         .addSecurity('bearer', {
         type: 'http',
         scheme: 'bearer',
