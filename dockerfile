@@ -7,5 +7,5 @@ RUN pnpm fetch
 RUN pnpm install -r -offline
 COPY . ./
 RUN pnpm build
-EXPOSE 4000
+EXPOSE 3000
 CMD ["pnpm", "start:prod"]
