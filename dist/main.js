@@ -9,7 +9,7 @@ const passport = require("passport");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.use(session({
-        secret: process.env.SECRET_KEY,
+        secret: 'keyboard',
         resave: false,
         saveUninitialized: false,
     }));

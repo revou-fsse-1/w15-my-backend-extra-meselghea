@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-const bcryptjs = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
 let UsersService = class UsersService {
     constructor(prisma) {
@@ -20,8 +20,8 @@ let UsersService = class UsersService {
     }
     async update(id, updateUserDto) {
         if (updateUserDto.password) {
-            const salt = await bcryptjs.genSalt(saltRounds);
-            updateUserDto.password = await bcryptjs.hash(updateUserDto.password, salt);
+            const salt = await bcrypt.genSalt(saltRounds);
+            updateUserDto.password = await bcrypt.hash(updateUserDto.password, salt);
         }
         return this.prisma.user.update({
             where: { id },

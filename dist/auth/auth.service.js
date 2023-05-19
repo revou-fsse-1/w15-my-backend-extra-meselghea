@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("./../prisma/prisma.service");
 const jwt_1 = require("@nestjs/jwt");
 const users_service_1 = require("../users/users.service");
-const bcryptjs = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
 let AuthService = class AuthService {
     constructor(prisma, jwtService, user) {
@@ -23,8 +23,8 @@ let AuthService = class AuthService {
         this.user = user;
     }
     async signup(createUserDto) {
-        const salt = await bcryptjs.genSalt(saltRounds);
-        const hashedPassword = await bcryptjs.hash(createUserDto.password, salt);
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hashedPassword = await bcrypt.hash(createUserDto.password, salt);
         createUserDto.password = hashedPassword;
         return this.prisma.user.create({
             data: createUserDto,
@@ -35,7 +35,7 @@ let AuthService = class AuthService {
         if (!user) {
             throw new common_1.NotFoundException(`No user found for email: ${email}`);
         }
-        const isPasswordValid = await bcryptjs.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             throw new common_1.UnauthorizedException('Invalid password');
         }

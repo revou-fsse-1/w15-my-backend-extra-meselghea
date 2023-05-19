@@ -10,7 +10,7 @@ import { UsersService } from 'src/users/users.service';
 //import { ConfigService } from '@nestjs/config';
 import { AuthEntity } from './entity/auth.entity';
 import { jwtSecret } from './auth.module';
-import * as bcryptjs from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
 const saltRounds = 10;
 
 @Injectable()
@@ -18,8 +18,8 @@ export class AuthService {
   constructor(private prisma: PrismaService, private jwtService: JwtService, private user: UsersService) {}
   
   async signup(createUserDto: CreateUserDto ) {
-     const salt = await bcryptjs.genSalt(saltRounds);
-     const hashedPassword = await bcryptjs.hash( createUserDto.password, salt );
+     const salt = await bcrypt.genSalt(saltRounds);
+     const hashedPassword = await bcrypt.hash( createUserDto.password, salt );
 
     createUserDto.password = hashedPassword;
 
@@ -35,7 +35,7 @@ export class AuthService {
       throw new NotFoundException(`No user found for email: ${email}`);
     }
 
-    const isPasswordValid = await bcryptjs.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid password');
