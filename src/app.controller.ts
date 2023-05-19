@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards, Request  } from '@nestjs/common';
 import { AppService } from './app.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard, } from 'src/auth/jwt-auth.guard';
+import { ApiBearerAuth  } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
@@ -12,6 +12,7 @@ export class AppController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   getHelloUser(@Request() req): string {
   return this.appService.getHello(req.user.username);
   }
