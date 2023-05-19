@@ -8,4 +8,5 @@ RUN pnpm install -r -offline
 COPY . ./
 RUN pnpm build
 EXPOSE 3000
+
 CMD ["pnpm", "start:prod"]

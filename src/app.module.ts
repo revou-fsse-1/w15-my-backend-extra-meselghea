@@ -9,7 +9,7 @@ import { UsersModule } from './users/users.module';
 
 
 @Module({
-  imports: [PrismaModule, ProductsModule, SellersModule, AuthModule, UsersModule],
+  imports: [PrismaModule, ProductsModule, SellersModule, UsersModule, AuthModule ],
   controllers: [AppController],
   providers: [AppService],
 })
